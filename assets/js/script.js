@@ -7,7 +7,7 @@ function getLocalStorage(key) {
 }
 
 // 2. Using moment function to show what day and time it is and create html of the timeblocks dynamically.
-$(document).ready(function() {
+$(".time-block").ready(function() {
     $("#currentDay").text(moment().format("dddd, Do MMMM YYYY") + ", " +moment().format("h:mm:ss a"));
     for (var i = 9; i < 18; i++) {
 
@@ -50,9 +50,11 @@ formatAMPM();
         for (var i = 9; i < 18; i++) { 
         console.log(currentTime, $(`#${i}`).data("time"));
         if ($(`#${i}`).data("time") == currentTime){
-            $(`#text${i}`).addClass( "present");
-        } else if (currentTime < $(`#${i}`).data("time")) {
-            $(`#text${i}`).addClass( "future");
+            $(`#text${i}`).addClass("present");
+        } else if (currentTime > $(`#${i}`).data("time")) {
+            $(`#text${i}`).addClass("past");
+        } else {
+            $(`#text${i}`).addClass("future");
         }
     }
 }
@@ -62,10 +64,10 @@ setInterval(function() {
 }, 1000);
 
 //5. When a user clicks the save button data is saved to the objects and to local storage changing the data loaded in new sessions of steps 1 & 2.
-    var saveBtn = $('.saveBtn');
-    saveBtn.on('click', function(){
+    var saveBtn = $(".saveBtn");
+    saveBtn.on("click", function(){
         var eventId = $(this).attr('id');
-        var eventText = $(this).parent().siblings().children('.description').val();
+        var eventText = $(this).parent().siblings().children(".description").val();
         localStorage.setItem(eventId, eventText);
     });
 

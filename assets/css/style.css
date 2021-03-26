@@ -32,11 +32,7 @@ textarea {
 
 .time-block {
   text-align: center;
-  border-top: 1px solid darkgray;
-  border-bottom: 1px solid darkgray;
   border-radius: 15px;
-  font-size: 20px;
-  width:10vw;
 }
 
 .container {
@@ -56,10 +52,8 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-}
-
-.hour p{
-  margin-bottom: 0;
+  top: 0.75rem;
+  right: 0.75rem;
 }
 
 .past {
@@ -92,15 +86,7 @@ textarea {
   min-height: 80px;
 }
 
-.saveBtn i{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all .2s ease-in-out;
-}
-
-.saveBtn i:hover {
+.saveBtn:hover {
   font-size: 20px;
   opacity: 0.6;
   transition: all 0.3s ease-in-out;
