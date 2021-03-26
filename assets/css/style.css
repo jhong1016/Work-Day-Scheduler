@@ -83,15 +83,15 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
-  cursor: pointer; /* added this */
+  cursor: pointer; 
 }
 
-.saveBtn i:hover {
+.saveBtn:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+  opacity: 0.6;
 }
 
-/* added this */
 .saveBtn::before {
   content: '🖫';
   position: absolute;

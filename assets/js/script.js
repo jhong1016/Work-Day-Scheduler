@@ -63,6 +63,21 @@ function setAlarm(now=moment()) {
     }, durationToNextHour)
 }
 
+function updateDisplay(now=moment()) {
+    // Get the current hour
+    var hour = now.hour()
+
+    // Update each color
+    var cells = $('.info-column')
+    console.log(cells);
+    for (let i = 0, hr = business.start; i < cells.length; i++, hr++) {
+        let cell = $(cells[i])
+        cell.removeClass(['past', 'present', 'future'])
+        cell.addClass(hour > hr ? 'past' : hour < hr ? 'future' : 'present')
+    }
+    
+    setAlarm(now)
+}
 
 $("#clearData").click(function() {
     // Button to clear all data currently corrected and refresh the page
