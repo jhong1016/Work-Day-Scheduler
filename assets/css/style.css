@@ -107,19 +107,27 @@ textarea {
 }
 
 #clearData {
+  float: center;
   border: 1px solid transparent;
   border-radius:10px;
   background-color: #06AED5;
   color: white;
+  opacity: 1;
+  padding: 5px;
   cursor: pointer;
   position: relative;
   min-height: 30px;
 }
 
-@media (max-width: 640px) {
-  .time-block {
-   font-size: 15px;
-   width: 10vw;
+#clearData:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
 }
+
+  @media (max-width: 640px) {
+    .time-block {
+    font-size: 15px;
+    width: 10vw;
+  }
 
 }
