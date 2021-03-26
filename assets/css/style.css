@@ -106,6 +106,16 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+#clearData {
+  border: 1px solid transparent;
+  border-radius:10px;
+  background-color: #06AED5;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  min-height: 30px;
+}
+
 @media (max-width: 640px) {
   .time-block {
    font-size: 15px;
