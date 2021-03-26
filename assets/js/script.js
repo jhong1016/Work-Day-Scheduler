@@ -5,7 +5,7 @@ var values, dateKey
 
 function init(now=moment()) {
     // Add the current date to top of screen
-    $('#currentDay').text(now.format('dddd, MMMM Do'))
+    $('#currentDay').text(now.format("dddd, Do MMMM YYYY"));
 
     // Get the current hour
     var hour = now.hour()
@@ -67,7 +67,7 @@ function updateDisplay(now=moment()) {
     // Get the current hour
     var hour = now.hour()
 
-    // Update each color
+    // Update each color by checking the hour of the current day to the hour represented in the HTML data-element
     var cells = $('.info-column')
     console.log(cells);
     for (let i = 0, hr = business.start; i < cells.length; i++, hr++) {
@@ -82,5 +82,5 @@ function updateDisplay(now=moment()) {
 $("#clearData").click(function() {
     // Button to clear all data currently corrected and refresh the page
     localStorage.clear();
-    location.reload()
+    location.reload();
 });
