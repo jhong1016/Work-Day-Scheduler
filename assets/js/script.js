@@ -32,3 +32,8 @@ $(document).ready(function() {
                 '5pm':{ time: "5pm", value: ""}
             };
         }
+
+    //3. Load data loaded from code under comment 1 into page.
+    $(".time-block").each(function(){
+        $(this).find(".description textarea").val(timeTrackObject[$(this).attr("data-time")].value);
+    });
