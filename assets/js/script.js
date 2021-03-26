@@ -37,3 +37,8 @@ $(document).ready(function() {
     $(".time-block").each(function(){
         $(this).find(".description textarea").val(timeTrackObject[$(this).attr("data-time")].value);
     });
+
+    // 4. Using moment to show what day and time it is.
+    var datetimeString = moment().format('dddd') + ", " +moment().format("MMM Do YYYY") + ", " +moment().format("h:mm:ss a");
+    $("#currentDay").html(datetimeString.substring(0, datetimeString.length - 5) + "th");
+    
