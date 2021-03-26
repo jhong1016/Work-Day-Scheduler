@@ -7,16 +7,16 @@ function init(now=moment()) {
     // Add the current date to top of screen
     $('#currentDay').text(now.format("dddd, Do MMMM YYYY"));
 
-    // Get the current hour
+    // Get the current hour of the current day
     var hour = now.hour()
 
     // Get values from local storage
     var localStr = localStorage.getItem('schedulerData') || "{}"
     values = JSON.parse(localStr)
-    dateKey = now.format('YYYYMMDD')
+    dateKey = now.format('DDMMYYYY')
     if (!(dateKey in values)) values[dateKey] = {}
 
-    // Build the time slots
+    // Build the time slots and add rows to container
     var container = $('.container')
     for (let hr = business.start; hr < business.end; hr++) {
         let time = moment(hr, 'H')
@@ -35,6 +35,8 @@ function init(now=moment()) {
         </div>`)
         container.append(row)
     }
+
+    // When a user clicks the save button, data is saved to the objects and to local storage
     container.on('click', event => {
         if (event.target.matches('.saveBtn')) {
             var button = event.target
