@@ -1,6 +1,6 @@
 //1. Checks if local storage exists, if it doesn't load preset data to array.
 function getLocalStorage(key) {
-    let value = localStorage.getItem(key);
+    var value = localStorage.getItem(key);
     if (value) {
         $(`#text${key}`).text(value);
     }
@@ -10,7 +10,7 @@ function getLocalStorage(key) {
 $( document ).ready(function() {
     $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
     $("#currentTime").text(moment().format("h:mm:ss a"));
-    for (let i = 9; i < 18; i++) {
+    for (var i = 9; i < 18; i++) {
 
         // row
         var row = $(`<div data-time=${i} id='${i}' class="row">`);
@@ -45,3 +45,18 @@ $( document ).ready(function() {
 formatAMPM();
 
 //4. This checks the hour of the current day to the hour represented in the HTML data-element to decide it's background color.
+function updateColors(){
+    var currentTime = new Date().getHours();
+    for (var i = 9; i < 18; i++) { 
+    console.log(currentTime, $(`#${i}`).data("time"));
+     if ($(`#${i}`).data("time") == currentTime){
+        $(`#text${i}`).addClass( "present");
+    } else if (currentTime < $(`#${i}`).data("time")) {
+        $(`#text${i}`).addClass( "future");
+    }
+}
+
+setInterval(function() {
+    updateColors();
+}, 1000);
+
