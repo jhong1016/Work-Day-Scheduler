@@ -51,6 +51,17 @@ function init(now=moment()) {
 }
 init()
 
+var timer
+
+function setAlarm(now=moment()) {
+    // Update display at the start of the next hour
+    var startOfNextHour = now.clone().endOf('hour').add(1, 'second')
+    var durationToNextHour = startOfNextHour - now
+    timer = setInterval(function() {
+        clearInterval(timer)
+        updateDisplay(startOfNextHour)
+    }, durationToNextHour)
+}
 
 
 $("#clearData").click(function() {
