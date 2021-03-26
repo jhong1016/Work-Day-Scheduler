@@ -1,44 +1,47 @@
-$(document).ready(function() {
-
-    //1. Create html of the timeblocks dynamically
-    for (var i = 9; i <= 17; i++){
-        $('.container').append(`<div class="row time-block" data-time="${i}"> 
-        <div class="col-sm col-md-2 hour"> 
-            <p>${i}AM</p> 
-        </div> 
-        <div class="col-sm col-md-8 d-flex description"> 
-            <textarea></textarea> 
-        </div> 
-        <div class="col-sm col-md-2 saveBtn"> 
-            <i class="far fa-save fa-2x"></i> 
-        </div> 
-        </div>`);
+//1. Checks if local storage exists, if it doesn't load preset data to array.
+function getLocalStorage(key) {
+    let value = localStorage.getItem(key);
+    if (value) {
+        $(`#text${key}`).text(value);
     }
+}
+
+// 2. Using moment function to show what day and time it is and create html of the timeblocks dynamically.
+$( document ).ready(function() {
+    $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
+    $("#currentTime").text(moment().format("h:mm:ss a"));
+    for (let i = 9; i < 18; i++) {
+
+        // row
+        var row = $(`<div data-time=${i} id='${i}' class="row">`);
+
+        // column
+        var col1 = $('<div class="col-sm-2"> <p class="hour">' + formatAMPM(i) + '</p>');
+
+        // column 2
+        var col2 = $(`<div class="col-sm-8 past"><textarea id=text${i} class="description" placeholder="Add your event here..."></textarea>`);        
        
-    var timeTrackObject = {};
-        //2. Checks if local storage exists, if it doesn't load preset data to array.
-        if (localStorage.getItem('timeTrackObject')) {
-            timeTrackObject = JSON.parse(localStorage.getItem('timeTrackObject'));
-        }else{
-            timeTrackObject = {
-                '9am': { time: "9am", value: ""},
-                '10am':{ time: "10am", value: ""},
-                '11am':{ time: "11am", value: ""},
-                '12pm':{ time: "12pm", value: ""},
-                '1pm':{ time: "1pm", value: ""},
-                '2pm':{ time: "2pm", value: ""},
-                '3pm':{ time: "3pm", value: ""},
-                '4pm':{ time: "4pm", value: ""},
-                '5pm':{ time: "5pm", value: ""}
-            };
-        }
+        // column 3
+        var col3 = $(`<div class="col-sm-2"><button class="saveBtn" id=${i}><i class="fas fa-save"></i></button>`)
+        
+        // col to row
+        row.append(col1);
+        row.append(col2);
+        row.append(col3);
 
-    //3. Load data loaded from code under comment 1 into page.
-    $(".time-block").each(function(){
-        $(this).find(".description textarea").val(timeTrackObject[$(this).attr("data-time")].value);
-    });
+        // add rows to container
+        $(".container").append(row);
 
-    // 4. Using moment to show what day and time it is.
-    var datetimeString = moment().format('dddd') + ", " +moment().format("MMM Do YYYY") + ", " +moment().format("h:mm:ss a");
-    $("#currentDay").html(datetimeString.substring(0, datetimeString.length - 5) + "th");
-    
+        getLocalStorage(i);
+    }    
+
+//3. Check hour of the day whether it's am or pm.
+    function formatAMPM(hours) {
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        return hours + ampm;
+    }
+formatAMPM();
+
+//4. This checks the hour of the current day to the hour represented in the HTML data-element to decide it's background color.
