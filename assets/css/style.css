@@ -10,11 +10,7 @@ textarea {
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  border-top: 1px solid darkgray;
-  border-bottom: 1px solid darkgray;
   padding: 10px;
-  height: 100%;
-  width: 100%;
 }
 
 .jumbotron {
@@ -27,7 +23,6 @@ textarea {
 
 .description {
   white-space: pre-wrap;
-  padding: 0;
 }
 
 .time-block {
@@ -35,25 +30,24 @@ textarea {
   border-radius: 15px;
 }
 
-.container {
-  float: center;
-  width: 100%;
-  height: 100%;
-}
-
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
-  margin-top: 2px;
+  border-top: 1px solid white;;
 }
 
 .hour {
+  position: relative; /* added this */
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+}
+
+/* added this */
+.hour-display {
+  position: absolute;
   top: 0.75rem;
-  right: 0.75rem;
+  right: 0.75rem
 }
 
 .past {
@@ -71,25 +65,44 @@ textarea {
   color: white;
 }
 
+.info-column {
+  position: relative;
+}
+.event-input {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #06AED5;
   color: white;
-  opacity: 1;
-  font-size: 25px;;
-  height: 60%;
-  width: 60%;
-  cursor: pointer;
-  position: relative;
-  min-height: 80px;
+  cursor: pointer; /* added this */
 }
 
-.saveBtn:hover {
+.saveBtn i:hover {
   font-size: 20px;
-  opacity: 0.6;
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+/* added this */
+.saveBtn::before {
+  content: '🖫';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+
+.saveBtn:hover::before {
+  font-size: 2.2rem;
+  transition: all .3s ease-in-out;
 }
 
 #clearData {
