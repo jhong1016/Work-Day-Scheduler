@@ -7,9 +7,8 @@ function getLocalStorage(key) {
 }
 
 // 2. Using moment function to show what day and time it is and create html of the timeblocks dynamically.
-$( document ).ready(function() {
-    $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
-    $("#currentTime").text(moment().format("h:mm:ss a"));
+$(document).ready(function() {
+    $("#currentDay").text(moment().format("dddd, MMMM Do YYYY") + ", " +moment().format("h:mm:ss a"));
     for (var i = 9; i < 18; i++) {
 
         // row
@@ -42,17 +41,19 @@ $( document ).ready(function() {
         hours = hours ? hours : 12;
         return hours + ampm;
     }
+    
 formatAMPM();
 
 //4. This checks the hour of the current day to the hour represented in the HTML data-element to decide it's background color.
-function updateColors(){
-    var currentTime = new Date().getHours();
-    for (var i = 9; i < 18; i++) { 
-    console.log(currentTime, $(`#${i}`).data("time"));
-     if ($(`#${i}`).data("time") == currentTime){
-        $(`#text${i}`).addClass( "present");
-    } else if (currentTime < $(`#${i}`).data("time")) {
-        $(`#text${i}`).addClass( "future");
+    function updateColors(){
+        var currentTime = new Date().getHours();
+        for (var i = 9; i < 18; i++) { 
+        console.log(currentTime, $(`#${i}`).data("time"));
+        if ($(`#${i}`).data("time") == currentTime){
+            $(`#text${i}`).addClass( "present");
+        } else if (currentTime < $(`#${i}`).data("time")) {
+            $(`#text${i}`).addClass( "future");
+        }
     }
 }
 
@@ -66,4 +67,5 @@ saveBtn.on('click', function(){
     var eventId = $(this).attr('id');
     var eventText = $(this).parent().siblings().children('.description').val();
     localStorage.setItem(eventId, eventText);
-});});
+});
+});
