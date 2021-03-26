@@ -60,3 +60,10 @@ setInterval(function() {
     updateColors();
 }, 1000);
 
+//5. When a user clicks the save button data is saved to the objects and to local storage changing the data loaded in new sessions of steps 1 & 2.
+var saveBtn = $('.saveBtn');
+saveBtn.on('click', function(){
+    var eventId = $(this).attr('id');
+    var eventText = $(this).parent().siblings().children('.description').val();
+    localStorage.setItem(eventId, eventText);
+});});
