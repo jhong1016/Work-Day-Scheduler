@@ -17,4 +17,4 @@ Grey boxes indicate past hours, red boxes equals the present hour, and green box
 
 **Link to Deployed Application**
 
-
+https://jhong1016.github.io/Work-Day-Scheduler/
